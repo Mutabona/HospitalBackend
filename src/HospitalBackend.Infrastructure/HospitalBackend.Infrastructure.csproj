@@ -6,4 +6,13 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\HospitalBackend.AppServices\HospitalBackend.AppServices.csproj" />
+      <ProjectReference Include="..\HospitalBackend.Domain\HospitalBackend.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    </ItemGroup>
+
 </Project>

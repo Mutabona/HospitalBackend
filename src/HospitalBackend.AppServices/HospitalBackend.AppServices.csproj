@@ -6,4 +6,24 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Contexts\Analyzes\Services\" />
+      <Folder Include="Contexts\Appointments\Services\" />
+      <Folder Include="Contexts\Examinations\Services\" />
+      <Folder Include="Contexts\Histories\Services\" />
+      <Folder Include="Contexts\Marks\Services\" />
+      <Folder Include="Contexts\Patients\Services\" />
+      <Folder Include="Contexts\Users\Services\" />
+      <Folder Include="Helpers\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0" />
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\HospitalBackend.Contracts\HospitalBackend.Contracts.csproj" />
+    </ItemGroup>
+
 </Project>

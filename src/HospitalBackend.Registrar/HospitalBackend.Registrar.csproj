@@ -6,4 +6,13 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\HospitalBackend.DataAccess\HospitalBackend.DataAccess.csproj" />
+      <ProjectReference Include="..\HospitalBackend.Infrastructure\HospitalBackend.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>

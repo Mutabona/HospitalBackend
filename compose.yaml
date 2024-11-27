@@ -1,0 +1,54 @@
+﻿services:
+  hospitalbackend.api:
+    image: hospitalbackend.api
+    container_name: api
+    build:
+      context: .
+      dockerfile: src/HospitalBackend.API/Dockerfile
+    environment:
+      - ConnectionStrings__DbConnection=Server=postgres;Database=HospitalDb;Username=postgres;Password=password;Port=5432
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5000:8080"
+    networks:
+      - hospital-network
+  
+  hospitalbackend.dbmigrator:
+    image: hospitalbackend.dbmigrator
+    container_name: dbmigrator
+    build:
+      context: .
+      dockerfile: src/HospitalBackend.DbMigrator/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ConnectionStrings__DbConnection=Server=postgres;Database=HospitalDb;Username=postgres;Password=password;Port=5432
+    networks:
+      - hospital-network
+  
+  postgres:
+    image: postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1000M
+        reservations:
+          cpus: '0.25'
+          memory: 500M
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - hospital-network
+
+
+volumes:
+  pg-data:
+
+networks:
+  hospital-network:
