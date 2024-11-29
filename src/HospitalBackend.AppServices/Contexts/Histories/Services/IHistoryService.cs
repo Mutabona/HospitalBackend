@@ -1,27 +1,30 @@
-﻿using HospitalBackend.Contracts.Histories;
+using HospitalBackend.Contracts.Histories;
 
-namespace HospitalBackend.AppServices.Contexts.Histories.Repositories;
+namespace HospitalBackend.AppServices.Contexts.Histories.Services;
 
 /// <summary>
-/// Репозиторий для работы с историями болезни.
+/// Сервис для работы с историями болезни.
 /// </summary>
-public interface IHistoryRepository
+public interface IHistoryService
 {
     /// <summary>
-    /// Добавление истории.
+    /// Добавление истории по модели запроса.
     /// </summary>
-    /// <param name="history">История.</param>
+    /// <param name="userId">Идентификатор врача.</param>
+    /// <param name="history">Запрос.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
+    /// <param name="patientId">Идентификатор пациента.</param>
     /// <returns>Идентификатор созданной истории.</returns>
-    Task<Guid> AddAsync(HistoryDto history, CancellationToken cancellationToken);
-    
+    Task<Guid> AddAsync(Guid patientId, Guid userId, AddHistoryRequest history, CancellationToken cancellationToken);
+
     /// <summary>
-    /// Обновляет истории.
+    /// Обновляет историю по модели запроса.
     /// </summary>
-    /// <param name="history">История.</param>
+    /// <param name="historyId">Идентификатор истории.</param>
+    /// <param name="history">Запрос.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns></returns>
-    Task UpdateAsync(HistoryDto history, CancellationToken cancellationToken);
+    Task UpdateAsync(Guid historyId, UpdateHistoryRequest history, CancellationToken cancellationToken);
     
     /// <summary>
     /// Получает истории по идентификатору пациента.

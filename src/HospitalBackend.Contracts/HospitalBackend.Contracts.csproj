@@ -18,7 +18,6 @@
       <Folder Include="Analyzes\" />
       <Folder Include="Appointments\" />
       <Folder Include="Examinations\" />
-      <Folder Include="Histories\" />
       <Folder Include="Marks\" />
     </ItemGroup>
 

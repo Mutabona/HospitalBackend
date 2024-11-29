@@ -10,7 +10,6 @@
       <Folder Include="Contexts\Analyzes\Services\" />
       <Folder Include="Contexts\Appointments\Services\" />
       <Folder Include="Contexts\Examinations\Services\" />
-      <Folder Include="Contexts\Histories\Services\" />
       <Folder Include="Contexts\Marks\Services\" />
     </ItemGroup>
 

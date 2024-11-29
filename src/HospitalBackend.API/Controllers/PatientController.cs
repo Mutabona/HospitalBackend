@@ -23,13 +23,13 @@ public class PatientController(IPatientService service) : BaseController
     /// <returns>Идентификатор созданного пациента.</returns>
     [HttpPost]
     [Authorize(Roles = "Doctor")]
-    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(Guid), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]
     public async Task<IActionResult> AddPatientAsync(AddPatientRequest request, CancellationToken cancellationToken)
     {
         var patientId = await service.AddPatientAsync(request, cancellationToken);
-        return Ok(patientId);
+        return StatusCode((int)HttpStatusCode.Created, patientId.ToString());
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ public class PatientController(IPatientService service) : BaseController
     /// <returns>Коллекция моделей пациентов.</returns>
     [Authorize(Roles = "Doctor")]
     [HttpGet("Fio/{fio}")]
-    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(ICollection<PatientDto>), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]
     public async Task<IActionResult> GetPatientsByFioAsync(string fio, CancellationToken cancellationToken)
@@ -57,7 +57,7 @@ public class PatientController(IPatientService service) : BaseController
     /// <returns>Модель пациента.</returns>
     [Authorize(Roles = "Doctor")]
     [HttpGet("{patientId}")]
-    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(PatientDto), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]

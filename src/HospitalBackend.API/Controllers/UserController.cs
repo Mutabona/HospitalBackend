@@ -58,7 +58,7 @@ public class UserController(IUserService userService) : BaseController
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns></returns>
     [Authorize(Roles = "Admin")]
-    [HttpDelete("Id/{id}")]
+    [HttpDelete("{id}")]
     [ProducesResponseType((int)HttpStatusCode.NoContent)]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]

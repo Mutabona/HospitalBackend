@@ -1,5 +1,6 @@
 using System.Text;
 using HospitalBackend.API.Controllers;
+using HospitalBackend.API.Middlewares;
 using HospitalBackend.Contracts.Users;
 using HospitalBackend.DataAccess;
 using HospitalBackend.Domain.Roles;
@@ -76,6 +77,8 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
