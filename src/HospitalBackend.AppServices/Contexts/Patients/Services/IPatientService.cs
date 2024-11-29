@@ -1,11 +1,11 @@
-﻿using HospitalBackend.Contracts.Patients;
+using HospitalBackend.Contracts.Patients;
 
-namespace HospitalBackend.AppServices.Contexts.Patients.Repositories;
+namespace HospitalBackend.AppServices.Contexts.Patients.Services;
 
 /// <summary>
-/// Репозиторий для работы с пациентами.
+/// Сервис для работы с пациентами
 /// </summary>
-public interface IPatientRepository
+public interface IPatientService
 {
     /// <summary>
     /// Получает пациентов по фио.
@@ -29,5 +29,5 @@ public interface IPatientRepository
     /// <param name="patient">Пациент.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Идентификатор созданного пользователя.</returns>
-    Task<Guid> AddPatientAsync(PatientDto patient, CancellationToken cancellationToken);
+    Task<Guid> AddPatientAsync(AddPatientRequest patient, CancellationToken cancellationToken);
 }

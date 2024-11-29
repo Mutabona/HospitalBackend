@@ -1,5 +1,14 @@
-﻿using HospitalBackend.DataAccess;
+﻿using AutoMapper;
+using HospitalBackend.AppServices.Contexts.Patients.Repositories;
+using HospitalBackend.AppServices.Contexts.Patients.Services;
+using HospitalBackend.AppServices.Contexts.Users.Repositories;
+using HospitalBackend.AppServices.Contexts.Users.Services;
+using HospitalBackend.AppServices.Services;
+using HospitalBackend.DataAccess;
+using HospitalBackend.DataAccess.Patients;
+using HospitalBackend.DataAccess.Users;
 using HospitalBackend.Infrastructure.Repository;
+using HospitalBackend.Registrar.MapProfiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,9 +21,16 @@ public static class Registrar
 {
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
+        services.AddTransient<IUserService, UserService>();
+        services.AddTransient<IJwtService, JwtService> ();
+        services.AddTransient<IPatientService, PatientService>();
+        
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IPatientRepository, PatientRepository>();
+        
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         
-        //services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
+        services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
         
         services.AddScoped<DbContext>(s => s.GetRequiredService<ApplicationDbContext>());
 
@@ -23,19 +39,17 @@ public static class Registrar
         return services;
     }
 
-    // private static MapperConfiguration GetMapperConfiguration()
-    // {
-    //     var configuration = new MapperConfiguration(cfg =>
-    //     {
-    //         cfg.AddProfile<UserProfile>();
-    //         cfg.AddProfile<BookProfile>();
-    //         cfg.AddProfile<ImageProfile>();
-    //         cfg.AddProfile<NewsProfile>();
-    //     });
-    //     
-    //     configuration.AssertConfigurationIsValid();
-    //     return configuration;
-    // }
+    private static MapperConfiguration GetMapperConfiguration()
+    {
+        var configuration = new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile<UserProfile>();
+            cfg.AddProfile<PatientProfile>();
+        });
+        
+        configuration.AssertConfigurationIsValid();
+        return configuration;
+    }
 
     // private static IServiceCollection AddFluentValidation(this IServiceCollection services)
     // {

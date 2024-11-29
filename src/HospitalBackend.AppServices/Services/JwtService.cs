@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using HospitalBackend.Contracts.Users;
+using HospitalBackend.Domain.Roles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -22,7 +23,7 @@ public class JwtService : IJwtService
     }
 
     ///<inheritdoc/>
-    public string GetToken(LoginUserRequest userData, Guid id, string role)
+    public string GetToken(LoginUserRequest userData, Guid id, Role role)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);
@@ -32,7 +33,7 @@ public class JwtService : IJwtService
             {
                 new Claim(ClaimTypes.Name, userData.Login),
                 new Claim(ClaimTypes.NameIdentifier, id.ToString()),
-                new Claim(ClaimTypes.Role, role),
+                new Claim(ClaimTypes.Role, role.ToString()),
             }),
             Expires = DateTime.UtcNow.AddDays(7),
             SigningCredentials = new(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)

@@ -1,12 +1,17 @@
-﻿using HospitalBackend.Domain.Roles;
+using HospitalBackend.Domain.Roles;
 
 namespace HospitalBackend.Contracts.Users;
 
 /// <summary>
-/// Запрос на регистрацию пользователя
+/// Модель пользователя
 /// </summary>
-public class RegisterUserRequest
+public class UserDto
 {
+    /// <summary>
+    /// Идентификатор
+    /// </summary>
+    public Guid Id { get; set; }
+    
     /// <summary>
     /// ФИО
     /// </summary>

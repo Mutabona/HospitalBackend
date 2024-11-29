@@ -1,11 +1,11 @@
-﻿using HospitalBackend.Domain.Roles;
+using HospitalBackend.Domain.Roles;
 
 namespace HospitalBackend.Contracts.Users;
 
 /// <summary>
-/// Запрос на регистрацию пользователя
+/// Запрос на изменение пользователя.
 /// </summary>
-public class RegisterUserRequest
+public class UpdateUserRequest
 {
     /// <summary>
     /// ФИО

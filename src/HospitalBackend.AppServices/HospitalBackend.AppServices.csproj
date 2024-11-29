@@ -12,9 +12,6 @@
       <Folder Include="Contexts\Examinations\Services\" />
       <Folder Include="Contexts\Histories\Services\" />
       <Folder Include="Contexts\Marks\Services\" />
-      <Folder Include="Contexts\Patients\Services\" />
-      <Folder Include="Contexts\Users\Services\" />
-      <Folder Include="Helpers\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -24,6 +21,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\HospitalBackend.Contracts\HospitalBackend.Contracts.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="AutoMapper">
+        <HintPath>..\..\..\..\.nuget\packages\automapper\13.0.1\lib\net6.0\AutoMapper.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

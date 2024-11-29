@@ -1,4 +1,5 @@
 ﻿using HospitalBackend.Contracts.Users;
+using HospitalBackend.Domain.Roles;
 
 namespace HospitalBackend.AppServices.Services;
 
@@ -14,5 +15,5 @@ public interface IJwtService
     /// <param name="id">Идентификатор польззователя.</param>
     /// <param name="role">Роль пользоваетеля.</param>
     /// <returns>Токен в виде строки.</returns>
-    string GetToken(LoginUserRequest userData, Guid id, string role);
+    string GetToken(LoginUserRequest userData, Guid id, Role role);
 }

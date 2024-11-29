@@ -1,0 +1,1 @@
+docker exec -t HospitalDb pg_dumpall -c -U postgres > HospitalDb.sql
