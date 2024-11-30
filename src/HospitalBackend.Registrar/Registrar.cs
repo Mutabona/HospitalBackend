@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using HospitalBackend.AppServices.Contexts.Examinations.Repositories;
+using HospitalBackend.AppServices.Contexts.Examinations.Services;
 using HospitalBackend.AppServices.Contexts.Histories.Repositories;
 using HospitalBackend.AppServices.Contexts.Histories.Services;
 using HospitalBackend.AppServices.Contexts.Patients.Repositories;
@@ -7,6 +9,7 @@ using HospitalBackend.AppServices.Contexts.Users.Repositories;
 using HospitalBackend.AppServices.Contexts.Users.Services;
 using HospitalBackend.AppServices.Services;
 using HospitalBackend.DataAccess;
+using HospitalBackend.DataAccess.Examinations;
 using HospitalBackend.DataAccess.Histories;
 using HospitalBackend.DataAccess.Patients;
 using HospitalBackend.DataAccess.Users;
@@ -28,10 +31,12 @@ public static class Registrar
         services.AddTransient<IJwtService, JwtService> ();
         services.AddTransient<IPatientService, PatientService>();
         services.AddTransient<IHistoryService, HistoryService>();
+        services.AddTransient<IExaminationService, ExaminationService>();
         
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IPatientRepository, PatientRepository>();
         services.AddScoped<IHistoryRepository, HistoryRepository>();
+        services.AddScoped<IExaminationRepository, ExaminationRepository>();
         
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         
@@ -51,6 +56,7 @@ public static class Registrar
             cfg.AddProfile<UserProfile>();
             cfg.AddProfile<PatientProfile>();
             cfg.AddProfile<HistoryProfile>();
+            cfg.AddProfile<ExaminationProfile>();
         });
         
         configuration.AssertConfigurationIsValid();
