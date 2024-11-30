@@ -28,6 +28,7 @@ public class AppointmentRepository(IRepository<Appointment> repository, IMapper 
             .Include(x => x.Examination.History)
             .Include(x => x.Examination.History.Patient)
             .Include(x => x.Mark)
+            .Include(x => x.Mark.User)
             .Where(x => x.Id == appointmentId)
             .ProjectTo<AppointmentDto>(mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken);
@@ -47,12 +48,25 @@ public class AppointmentRepository(IRepository<Appointment> repository, IMapper 
             .Include(x => x.Examination.History)
             .Include(x => x.Examination.History.Patient)
             .Include(x => x.Mark)
+            .Include(x => x.Mark.User)
             .Where(x => x.Examination.HistoryId == historyId)
             .ProjectTo<AppointmentDto>(mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
-
-        if (appointments.Count == 0) throw new EntityNotFoundException();
         
         return appointments;
+    }
+
+    ///<inheritdoc/>
+    public async Task<Guid> GetHistoryIdByAppointmentIdAsync(Guid appointmentId, CancellationToken cancellationToken)
+    {
+        var appointment = await repository
+            .GetAll()
+            .Include(x => x.Examination)
+            .Where(x => x.Id == appointmentId)
+            .FirstOrDefaultAsync(cancellationToken);
+        
+        if (appointment == null) throw new EntityNotFoundException();
+        
+        return appointment.Examination.HistoryId;
     }
 }

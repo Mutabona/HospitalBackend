@@ -1,5 +1,6 @@
 using AutoMapper;
 using HospitalBackend.AppServices.Contexts.Patients.Repositories;
+using HospitalBackend.AppServices.Exceptions;
 using HospitalBackend.Contracts.Patients;
 
 namespace HospitalBackend.AppServices.Contexts.Patients.Services;
@@ -25,5 +26,19 @@ public class PatientService(IPatientRepository repository, IMapper mapper) : IPa
         var patientDto = mapper.Map<PatientDto>(patient);
         patientDto.Id = Guid.NewGuid();
         return await repository.AddPatientAsync(patientDto, cancellationToken);
+    }
+
+    ///<inheritdoc/>
+    public async Task<bool> IsPatientExistsAsync(Guid patientId, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await repository.GetPatientByIdAsync(patientId, cancellationToken);
+        }
+        catch (EntityNotFoundException)
+        {
+            return false;
+        }
+        return true;
     }
 }

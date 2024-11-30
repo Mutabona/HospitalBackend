@@ -3,6 +3,7 @@ using HospitalBackend.AppServices.Contexts.Users.Repositories;
 using HospitalBackend.AppServices.Exceptions;
 using HospitalBackend.AppServices.Services;
 using HospitalBackend.Contracts.Users;
+using HospitalBackend.Domain.Roles;
 
 namespace HospitalBackend.AppServices.Contexts.Users.Services;
 
@@ -103,5 +104,27 @@ public class UserService : IUserService
     public async Task<ICollection<UserDto>> GetUsersByFioAsync(string fio, CancellationToken cancellationToken)
     {
         return await _repository.GetUsersByFioAsync(fio, cancellationToken);
+    }
+
+    ///<inheritdoc/>
+    public async Task<bool> IsUserExistsAsync(Guid userId, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await _repository.GetByIdAsync(userId, cancellationToken);
+        }
+        catch (EntityNotFoundException)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    ///<inheritdoc/>
+    public async Task<bool> IsUserDoctorAsync(Guid userId, CancellationToken cancellationToken)
+    {
+        var user = await _repository.GetByIdAsync(userId, cancellationToken);
+        if (user.Role == Role.Doctor) return true;
+        return false;
     }
 }

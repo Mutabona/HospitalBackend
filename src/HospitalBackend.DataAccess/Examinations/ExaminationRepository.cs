@@ -47,8 +47,6 @@ public class ExaminationRepository(IRepository<Examination> repository, IMapper 
             .ProjectTo<ExaminationDto>(mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
         
-        if (examinations == null) throw new EntityNotFoundException();
-        
         return examinations;
     }
 

@@ -41,4 +41,12 @@ public interface IHistoryService
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Модель истории.</returns>
     Task<HistoryDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Проверяет, существует ли такая история болезни.
+    /// </summary>
+    /// <param name="id">Идентификатор истории болезни.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>True, если существует, false, если нет.</returns>
+    Task<bool> IsHistoryExistsAsync(Guid id, CancellationToken cancellationToken);
 }

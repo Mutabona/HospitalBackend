@@ -44,4 +44,9 @@ public class AppointmentDto
     /// Дата выполнения.
     /// </summary>
     public DateOnly? MarkDate { get; set; }
+    
+    /// <summary>
+    /// Фио того, кто отметил назначение, как выполненное.
+    /// </summary>
+    public string? FioMarkedBy { get; set; }
 }

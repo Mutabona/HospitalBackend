@@ -48,4 +48,12 @@ public interface IExaminationService
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Модель осмотра.</returns>
     Task<ExaminationDto> GetByIdAsync(Guid examinationId, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Проверяет, существует ли осмотр.
+    /// </summary>
+    /// <param name="examinationId">Идентификатор осмотра.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>True, если существует, false, если нет.</returns>
+    Task<bool> IsExaminationExistsAsync(Guid examinationId, CancellationToken cancellationToken);
 }

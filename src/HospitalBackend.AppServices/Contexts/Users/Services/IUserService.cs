@@ -63,4 +63,20 @@ public interface IUserService
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Коллекция моделей пользователей.</returns>
     Task<ICollection<UserDto>> GetUsersByFioAsync(string fio, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Проверяет, существует ли такой работник.
+    /// </summary>
+    /// <param name="userId">Идентификатор работника.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>True, если существует, false, если нет.</returns>
+    Task<bool> IsUserExistsAsync(Guid userId, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Проверяет, является ли пользователь доктором.
+    /// </summary>
+    /// <param name="userId">Идентификатор пользователя.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>True, если является, false, если нет.</returns>
+    Task<bool> IsUserDoctorAsync(Guid userId, CancellationToken cancellationToken);
 }

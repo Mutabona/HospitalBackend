@@ -30,4 +30,12 @@ public interface IAppointmentRepository
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Коллекция назначений.</returns>
     Task<ICollection<AppointmentDto>> GetAppointmentsByHistoryIdAsync(Guid historyId, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Получает идентификатор истории болезни по идентификатору назначения.
+    /// </summary>
+    /// <param name="appointmentId">Идентификатор назначения.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Идентификатор истории болезни.</returns>
+    Task<Guid> GetHistoryIdByAppointmentIdAsync(Guid appointmentId, CancellationToken cancellationToken);
 }

@@ -73,6 +73,12 @@ public class ExceptionHandlingMiddleware
                 Message = invalidLoginDataException.Message,
                 TraceId = context.TraceIdentifier,
             },
+            ConflictException conflictException => new ApiError()
+            {
+                Code = ((int)HttpStatusCode.Conflict).ToString(),
+                Message = conflictException.Message,
+                TraceId = context.TraceIdentifier,
+            },
             _ => new ApiError
             {
                 Code = ((int)HttpStatusCode.InternalServerError).ToString(),
@@ -89,6 +95,7 @@ public class ExceptionHandlingMiddleware
             LoginAlreadyExistsException => HttpStatusCode.Conflict,
             EntityNotFoundException => HttpStatusCode.NotFound,
             InvalidLoginDataException => HttpStatusCode.Unauthorized,
+            ConflictException => HttpStatusCode.Conflict,
             _ => HttpStatusCode.InternalServerError,
         };
     }

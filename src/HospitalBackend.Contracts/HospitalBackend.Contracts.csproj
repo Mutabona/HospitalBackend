@@ -15,11 +15,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Analyzes\" />
-      <Folder Include="Marks\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\HospitalBackend.Domain\HospitalBackend.Domain.csproj" />
     </ItemGroup>
 
