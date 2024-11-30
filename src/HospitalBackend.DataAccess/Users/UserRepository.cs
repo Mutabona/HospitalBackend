@@ -70,6 +70,8 @@ public class UserRepository : IUserRepository
     {
         var user = await _repository.GetAll().Where(s => s.Id == userId)
             .ProjectTo<UserDto>(_mapper.ConfigurationProvider).FirstOrDefaultAsync(cancellationToken);
+        
+        if (user == null) throw new EntityNotFoundException();
         return _mapper.Map<UserDto>(user);
     }
 
