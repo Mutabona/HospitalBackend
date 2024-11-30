@@ -16,6 +16,11 @@ public class Appointment : BaseEntity
     public string Content { get; set; }
     
     /// <summary>
+    /// Дата назначения.
+    /// </summary>
+    public DateOnly Date { get; set; }
+    
+    /// <summary>
     /// Идентификатор осмотра
     /// </summary>
     public Guid ExaminationId { get; set; }
@@ -33,5 +38,5 @@ public class Appointment : BaseEntity
     /// <summary>
     /// Отметка о выполнении
     /// </summary>
-    public virtual Mark Mark { get; set; }
+    public virtual Mark? Mark { get; set; }
 }

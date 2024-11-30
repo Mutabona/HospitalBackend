@@ -1,19 +1,20 @@
-﻿using HospitalBackend.Contracts.Appointments;
+using HospitalBackend.Contracts.Appointments;
 
-namespace HospitalBackend.AppServices.Contexts.Appointments.Repositories;
+namespace HospitalBackend.AppServices.Contexts.Appointments.Services;
 
 /// <summary>
-/// Репозиторий для работы с назначениями.
+/// Сервис для работы с назначениями.
 /// </summary>
-public interface IAppointmentRepository
+public interface IAppointmentService
 {
     /// <summary>
-    /// Добавляет назначение.
+    /// Добавляет назначение по меодели запроса.
     /// </summary>
-    /// <param name="appointment">Назначение.</param>
+    /// <param name="examinationId">Осмотр, на котором сделано назначение.</param>
+    /// <param name="request">Запрос.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Идентификатор созданного назначения.</returns>
-    Task<Guid> AddAppointmentAsync(AppointmentDto appointment, CancellationToken cancellationToken);
+    Task<Guid> AddAsync(Guid examinationId, AddAppointmentRequest request, CancellationToken cancellationToken);
     
     /// <summary>
     /// Получает назначение по идентификатору.
@@ -28,6 +29,6 @@ public interface IAppointmentRepository
     /// </summary>
     /// <param name="historyId">Идентификатор истории болезни.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
-    /// <returns>Коллекция назначений.</returns>
-    Task<ICollection<AppointmentDto>> GetAppointmentsByHistoryIdAsync(Guid historyId, CancellationToken cancellationToken);
+    /// <returns>Коллекция моделей назначений.</returns>
+    Task<ICollection<AppointmentDto>> GetByHistoryIdAsync(Guid historyId, CancellationToken cancellationToken);
 }

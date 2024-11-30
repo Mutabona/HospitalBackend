@@ -30,5 +30,9 @@ public class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
             .HasOne(x => x.Mark)
             .WithOne(x => x.Appointment)
             .HasForeignKey<Mark>(x => x.AppointmentId);
+        
+        builder
+            .Property(x => x.Date)
+            .IsRequired();
     }
 }

@@ -87,4 +87,20 @@ public class UserController(IUserService userService) : BaseController
         await userService.UpdateUserAsync(id, request, cancellationToken);
         return NoContent();
     }
+
+    /// <summary>
+    /// Получает роль авторизованного пользователя.
+    /// </summary>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Роль пользователя.</returns>
+    [Authorize]
+    [HttpGet("Role")]
+    [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+    [ProducesResponseType((int)HttpStatusCode.Forbidden)]
+    [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> GetUserRoleAsync(CancellationToken cancellationToken)
+    {
+        var role = GetCurrentUserRole();
+        return Ok(role);
+    }
 }

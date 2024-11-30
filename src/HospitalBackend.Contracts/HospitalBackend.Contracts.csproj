@@ -16,7 +16,6 @@
 
     <ItemGroup>
       <Folder Include="Analyzes\" />
-      <Folder Include="Appointments\" />
       <Folder Include="Marks\" />
     </ItemGroup>
 
