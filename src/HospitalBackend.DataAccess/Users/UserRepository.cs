@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using HospitalBackend.AppServices.Contexts.Users.Repositories;
 using HospitalBackend.AppServices.Exceptions;
 using HospitalBackend.Contracts.Users;
+using HospitalBackend.Domain.Roles;
 using HospitalBackend.Domain.Users;
 using HospitalBackend.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -92,5 +93,17 @@ public class UserRepository : IUserRepository
             .ToListAsync(cancellationToken);
         
         return users;
+    }
+
+    ///<inheritdoc/>
+    public async Task<ICollection<UserDto>> GetDoctorsAsync(CancellationToken cancellationToken)
+    {
+        var doctors = await _repository
+            .GetAll()
+            .Where(x => x.Role == Role.Doctor)
+            .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+
+        return doctors;
     }
 }

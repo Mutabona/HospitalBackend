@@ -62,4 +62,11 @@ public interface IUserRepository
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Коллекция моделей пользователей.</returns>
     Task<ICollection<UserDto>> GetUsersByFioAsync(string fio, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Получает всех джокторов.
+    /// </summary>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Коллекция врачей.</returns>
+    Task<ICollection<UserDto>> GetDoctorsAsync(CancellationToken cancellationToken);
 }

@@ -127,4 +127,10 @@ public class UserService : IUserService
         if (user.Role == Role.Doctor) return true;
         return false;
     }
+
+    ///<inheritdoc/>
+    public async Task<ICollection<UserDto>> GetDoctorsAsync(CancellationToken cancellationToken)
+    {
+        return await _repository.GetDoctorsAsync(cancellationToken);
+    }
 }

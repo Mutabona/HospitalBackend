@@ -103,4 +103,20 @@ public class UserController(IUserService userService) : BaseController
         var role = GetCurrentUserRole();
         return Ok(role);
     }
+
+    /// <summary>
+    /// Возвращает коллекция всех докторов.
+    /// </summary>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Коллекция докторов.</returns>
+    [Authorize(Roles = "Doctor")]
+    [HttpGet("Doctor")]
+    [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+    [ProducesResponseType((int)HttpStatusCode.Forbidden)]
+    [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> GetDoctorsAsync(CancellationToken cancellationToken)
+    {
+        var doctors = await userService.GetDoctorsAsync(cancellationToken);
+        return Ok(doctors);
+    }
 }
