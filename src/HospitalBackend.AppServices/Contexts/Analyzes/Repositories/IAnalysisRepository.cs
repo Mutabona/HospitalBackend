@@ -30,4 +30,12 @@ public interface IAnalysisRepository
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Коллекция моделей анализов.</returns>
     Task<ICollection<AnalysisDto>> GetByHistoryIdAsync(Guid historyId, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Получает анализ по идентификатору назначения.
+    /// </summary>
+    /// <param name="appointmentId">Идентификатор назначения.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Модель анализа.</returns>
+    Task<AnalysisDto> GetByAppointmentIdAsync(Guid appointmentId, CancellationToken cancellationToken);
 }

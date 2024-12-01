@@ -33,4 +33,10 @@ public class AnalysisService(IAnalysisRepository repository, IMapper mapper, Tim
     {
         return await repository.GetByIdAsync(analysisId, cancellationToken);
     }
+
+    ///<inheritdoc/>
+    public async Task<AnalysisDto> GetByAppointmentIdAsync(Guid appointmentId, CancellationToken cancellationToken)
+    {
+        return await repository.GetByAppointmentIdAsync(appointmentId, cancellationToken);
+    }
 }

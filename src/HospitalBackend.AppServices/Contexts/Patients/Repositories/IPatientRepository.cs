@@ -20,7 +20,7 @@ public interface IPatientRepository
     /// </summary>
     /// <param name="patientId">Идентификатор пациента.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
-    /// <returns>Моедбль пациента.</returns>
+    /// <returns>Модель пациента.</returns>
     Task<PatientDto> GetPatientByIdAsync(Guid patientId, CancellationToken cancellationToken);
     
     /// <summary>

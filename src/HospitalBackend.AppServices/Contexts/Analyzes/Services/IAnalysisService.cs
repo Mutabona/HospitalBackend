@@ -31,4 +31,12 @@ public interface IAnalysisService
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Модель анализа.</returns>
     Task<AnalysisDto> GetByIdAsync(Guid analysisId, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Получает анализ по идентификатору назначения.
+    /// </summary>
+    /// <param name="appointmentId">Идентификатор назначения.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Модель анализа.</returns>
+    Task<AnalysisDto> GetByAppointmentIdAsync(Guid appointmentId, CancellationToken cancellationToken);
 }

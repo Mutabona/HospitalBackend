@@ -8,7 +8,7 @@ namespace HospitalBackend.AppServices.Contexts.Appointments.Services;
 public interface IAppointmentService
 {
     /// <summary>
-    /// Добавляет назначение по меодели запроса.
+    /// Добавляет назначение по модели запроса.
     /// </summary>
     /// <param name="examinationId">Осмотр, на котором сделано назначение.</param>
     /// <param name="request">Запрос.</param>

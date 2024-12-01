@@ -81,7 +81,7 @@ public interface IUserService
     Task<bool> IsUserDoctorAsync(Guid userId, CancellationToken cancellationToken);
     
     /// <summary>
-    /// Получает всех джокторов.
+    /// Получает всех докторов.
     /// </summary>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Коллекция врачей.</returns>

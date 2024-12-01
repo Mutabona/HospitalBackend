@@ -33,7 +33,7 @@ public class Appointment : BaseEntity
     /// <summary>
     /// Анализы
     /// </summary>
-    public virtual ICollection<Analysis> Analyzes { get; set; }
+    public virtual Analysis Analysis { get; set; }
     
     /// <summary>
     /// Отметка о выполнении

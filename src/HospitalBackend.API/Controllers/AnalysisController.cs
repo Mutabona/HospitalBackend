@@ -69,4 +69,22 @@ public class AnalysisController(IAnalysisService service) : BaseController
         var analyzes = await service.GetAnalysesByHistoryIdAsync(historyId, cancellationToken);
         return Ok(analyzes);
     }
+
+    /// <summary>
+    /// Получает анализ по идентификатору назначения.
+    /// </summary>
+    /// <param name="appointmentId">Идентификатор назначения.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Модель анализа.</returns>
+    [Authorize]
+    [HttpGet("/Appointment/{appointmentId}/Analysis")]
+    [ProducesResponseType((int)HttpStatusCode.NotFound)]
+    [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+    [ProducesResponseType((int)HttpStatusCode.Forbidden)]
+    [ProducesResponseType(typeof(AnalysisDto), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> GetByAppointmentIdAsync(Guid appointmentId, CancellationToken cancellationToken)
+    {
+        var analysis = await service.GetByAppointmentIdAsync(appointmentId, cancellationToken);
+        return Ok(analysis);
+    }
 }

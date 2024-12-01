@@ -1,4 +1,5 @@
-﻿using HospitalBackend.Domain.Appointments;
+﻿using HospitalBackend.Domain.Analyzes;
+using HospitalBackend.Domain.Appointments;
 using HospitalBackend.Domain.Marks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -22,9 +23,9 @@ public class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
             .IsRequired();
 
         builder
-            .HasMany(x => x.Analyzes)
+            .HasOne(x => x.Analysis)
             .WithOne(x => x.Appointment)
-            .HasForeignKey(x => x.AppointmentId);
+            .HasForeignKey<Analysis>(x => x.AppointmentId);
         
         builder
             .HasOne(x => x.Mark)

@@ -36,4 +36,18 @@ public class AnalysisRepository(IRepository<Analysis> repository, IMapper mapper
         
         return analyzes;
     }
+
+    ///<inheritdoc/>
+    public async Task<AnalysisDto> GetByAppointmentIdAsync(Guid appointmentId, CancellationToken cancellationToken)
+    {
+        var analysis = await repository
+            .GetAll()
+            .Where(a => a.AppointmentId == appointmentId)
+            .ProjectTo<AnalysisDto>(mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (analysis == null) throw new EntityNotFoundException();
+        
+        return analysis;
+    }
 }
