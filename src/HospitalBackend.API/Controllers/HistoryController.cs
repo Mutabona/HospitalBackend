@@ -40,7 +40,7 @@ public class HistoryController(IHistoryService service) : BaseController
     /// <param name="patientId">Идентификатор пациента.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Коллекция моделей историй болезни.</returns>
-    [Authorize(Roles = "Doctor")]
+    [Authorize]
     [HttpGet("/Patient/{patientId}/History")]
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
@@ -58,7 +58,7 @@ public class HistoryController(IHistoryService service) : BaseController
     /// <param name="id">Идентификатор.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Модель истории.</returns>
-    [Authorize(Roles = "Doctor")]
+    [Authorize]
     [HttpGet("{id}")]
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
