@@ -66,4 +66,21 @@ public class AppointmentController(IAppointmentService service) : BaseController
         var appointments = await service.GetByHistoryIdAsync(id, cancellationToken);
         return Ok(appointments);
     }
+
+    /// <summary>
+    /// Получает назначения по идентификатору осмотра.
+    /// </summary>
+    /// <param name="examinationId">Идентифиактор осмотра.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Коллекция моделей назначений.</returns>
+    [Authorize]
+    [HttpGet("/Examination/{examinationId}/Appointment")]
+    [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+    [ProducesResponseType((int)HttpStatusCode.Forbidden)]
+    [ProducesResponseType(typeof(ICollection<AppointmentDto>), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> GetByExaminationIdAsync(Guid examinationId, CancellationToken cancellationToken)
+    {
+        var appointments = await service.GetByExaminationIdAsync(examinationId, cancellationToken);
+        return Ok(appointments);
+    }
 }

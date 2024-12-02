@@ -47,4 +47,12 @@ public interface IAppointmentService
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>True, если существует, false, если нет.</returns>
     Task<bool> IsAppointmentExistsAsync(Guid appointmentId, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Получает назначения по идентификатору осмотра.
+    /// </summary>
+    /// <param name="examinationId">Идентификатор осмотра.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Коллекция моделей назначений.</returns>
+    Task<ICollection<AppointmentDto>> GetByExaminationIdAsync(Guid examinationId, CancellationToken cancellationToken);
 }

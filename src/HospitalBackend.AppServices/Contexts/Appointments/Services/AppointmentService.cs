@@ -54,4 +54,10 @@ public class AppointmentService(IAppointmentRepository repository, IMapper mappe
         }
         return true;
     }
+
+    ///<inheritdoc/>
+    public async Task<ICollection<AppointmentDto>> GetByExaminationIdAsync(Guid examinationId, CancellationToken cancellationToken)
+    {
+        return await repository.GetByExaminationIdAsync(examinationId, cancellationToken);
+    }
 }
