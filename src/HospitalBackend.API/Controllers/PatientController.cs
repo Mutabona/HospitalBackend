@@ -38,7 +38,7 @@ public class PatientController(IPatientService service) : BaseController
     /// <param name="fio">ФИО.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Коллекция моделей пациентов.</returns>
-    [Authorize(Roles = "Doctor")]
+    [Authorize]
     [HttpGet("Fio/{fio}")]
     [ProducesResponseType(typeof(ICollection<PatientDto>), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
@@ -55,7 +55,7 @@ public class PatientController(IPatientService service) : BaseController
     /// <param name="patientId">Идентификатор пациента.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Модель пациента.</returns>
-    [Authorize(Roles = "Doctor")]
+    [Authorize]
     [HttpGet("{patientId}")]
     [ProducesResponseType(typeof(PatientDto), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]

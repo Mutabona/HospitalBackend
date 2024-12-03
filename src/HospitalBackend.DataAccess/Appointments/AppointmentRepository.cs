@@ -69,4 +69,22 @@ public class AppointmentRepository(IRepository<Appointment> repository, IMapper 
         
         return appointment.Examination.HistoryId;
     }
+
+    ///<inheritdoc/>
+    public async Task<ICollection<AppointmentDto>> GetByExaminationIdAsync(Guid examinationId, CancellationToken cancellationToken)
+    {
+        var appointments = await repository
+            .GetAll()
+            .Include(x => x.Examination)
+            .Include(x => x.Examination.User)
+            .Include(x => x.Examination.History)
+            .Include(x => x.Examination.History.Patient)
+            .Include(x => x.Mark)
+            .Include(x => x.Mark.User)
+            .Where(x => x.ExaminationId == examinationId)
+            .ProjectTo<AppointmentDto>(mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+        
+        return appointments;
+    }
 }
