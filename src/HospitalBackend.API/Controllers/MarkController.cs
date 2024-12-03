@@ -12,6 +12,7 @@ namespace HospitalBackend.API.Controllers;
 [ApiController]
 [Route("[controller]")]
 [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+[ProducesResponseType((int)HttpStatusCode.Conflict)]
 public class MarkController(IMarkService service) : BaseController
 {
     /// <summary>

@@ -13,6 +13,7 @@ namespace HospitalBackend.API.Controllers;
 [ApiController]
 [Route("[controller]")]
 [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+[ProducesResponseType((int)HttpStatusCode.Conflict)]
 public class AppointmentController(IAppointmentService service) : BaseController
 {
     /// <summary>
