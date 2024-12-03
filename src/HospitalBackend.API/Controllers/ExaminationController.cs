@@ -56,7 +56,7 @@ public class ExaminationController(IExaminationService service) : BaseController
     /// <param name="historyId">Идентификатор истории болезни.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Коллекция моделей осмотров.</returns>
-    [Authorize(Roles = "Doctor")]
+    [Authorize]
     [HttpGet("/History/{historyId}/Examination")]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]
@@ -73,7 +73,7 @@ public class ExaminationController(IExaminationService service) : BaseController
     /// <param name="id">Идентификатор.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Модель осмотра.</returns>
-    [Authorize(Roles = "Doctor")]
+    [Authorize]
     [HttpGet("{id}")]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]
