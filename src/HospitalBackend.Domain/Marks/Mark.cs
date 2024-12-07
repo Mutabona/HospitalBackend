@@ -22,12 +22,12 @@ public class Mark : BaseEntity
     /// <summary>
     /// Идентификатор работника, который выполнил
     /// </summary>
-    public Guid UserId { get; set; }
+    public Guid? UserId { get; set; }
     
     /// <summary>
     /// Работник, который выполнил
     /// </summary>
-    public virtual User User { get; set; }
+    public virtual User? User { get; set; }
     
     /// <summary>
     /// Идентификатор назначения

@@ -23,7 +23,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Validators\" />
+      <Folder Include="Validators\Analyzes\" />
+      <Folder Include="Validators\Appointments\" />
+      <Folder Include="Validators\Examinations\" />
+      <Folder Include="Validators\Histories\" />
+      <Folder Include="Validators\Patients\" />
+      <Folder Include="Validators\Users\" />
     </ItemGroup>
 
 </Project>

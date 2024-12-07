@@ -15,12 +15,10 @@ public class MarkConfiguration : IEntityTypeConfiguration<Mark>
         builder
             .Property(x => x.IsDone)
             .IsRequired();
-        
+
         builder
-            .Property(x => x.UserId)
-            .IsRequired();
+            .Property(x => x.UserId);
         
-        //Сюда триггер
         builder
             .Property(x => x.Date)
             .IsRequired();

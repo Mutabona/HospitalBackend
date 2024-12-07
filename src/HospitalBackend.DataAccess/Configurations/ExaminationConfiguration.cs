@@ -19,14 +19,14 @@ public class ExaminationConfiguration : IEntityTypeConfiguration<Examination>
         builder
             .Property(x => x.HistoryId)
             .IsRequired();
-        
+
         builder
-            .Property(x => x.UserId)
-            .IsRequired();
+            .Property(x => x.UserId);
 
         builder
             .HasMany(x => x.Appointments)
             .WithOne(x => x.Examination)
+            .OnDelete(DeleteBehavior.Cascade)
             .HasForeignKey(x => x.ExaminationId);
     }
 }

@@ -12,11 +12,14 @@ namespace HospitalBackend.DataAccess.Patients;
 public class PatientRepository(IRepository<Patient> repository, IMapper mapper) : IPatientRepository
 {
     ///<inheritdoc/>
-    public async Task<ICollection<PatientDto>> GetPatientsByFioAsync(string fio, CancellationToken cancellationToken)
+    public async Task<ICollection<PatientDto>> GetPatientsByFioAsync(string? fio, CancellationToken cancellationToken)
     {
-        var patients = await repository
-            .GetAll()
-            .Where(s => s.FIO.ToLower().Contains(fio.ToLower()))
+        var query = repository
+            .GetAll();
+            
+        if (!string.IsNullOrWhiteSpace(fio)) query = query.Where(x => x.FIO.ToLower().Contains(fio.ToLower()));
+        
+        var patients = await query
             .ProjectTo<PatientDto>(mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
         

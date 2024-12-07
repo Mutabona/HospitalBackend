@@ -9,7 +9,7 @@ namespace HospitalBackend.AppServices.Contexts.Patients.Services;
 public class PatientService(IPatientRepository repository, IMapper mapper) : IPatientService
 {
     ///<inheritdoc/>
-    public async Task<ICollection<PatientDto>> GetPatientsByFioAsync(string fio, CancellationToken cancellationToken)
+    public async Task<ICollection<PatientDto>> GetPatientsByFioAsync(string? fio, CancellationToken cancellationToken)
     {
         return await repository.GetPatientsByFioAsync(fio, cancellationToken);
     }

@@ -40,16 +40,19 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder
             .HasMany(x => x.Histories)
             .WithOne(x => x.User)
+            .OnDelete(DeleteBehavior.SetNull)
             .HasForeignKey(x => x.UserId);
         
         builder
             .HasMany(x => x.Marks)
             .WithOne(x => x.User)
+            .OnDelete(DeleteBehavior.SetNull)
             .HasForeignKey(x => x.UserId);
         
         builder
             .HasMany(x => x.Examinations)
             .WithOne(x => x.User)
+            .OnDelete(DeleteBehavior.SetNull)
             .HasForeignKey(x => x.UserId);
     }
 }

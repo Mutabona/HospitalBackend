@@ -37,10 +37,10 @@ public class Analysis : BaseEntity
     /// <summary>
     /// Идентификатор назначения
     /// </summary>
-    public Guid AppointmentId { get; set; }
+    public Guid? AppointmentId { get; set; }
     
     /// <summary>
     /// Назначение
     /// </summary>
-    public virtual Appointment Appointment { get; set; }
+    public virtual Appointment? Appointment { get; set; }
 }

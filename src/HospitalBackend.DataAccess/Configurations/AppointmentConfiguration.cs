@@ -25,12 +25,14 @@ public class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
         builder
             .HasOne(x => x.Analysis)
             .WithOne(x => x.Appointment)
-            .HasForeignKey<Analysis>(x => x.AppointmentId);
+            .HasForeignKey<Analysis>(x => x.AppointmentId)
+            .OnDelete(DeleteBehavior.SetNull);
         
         builder
             .HasOne(x => x.Mark)
             .WithOne(x => x.Appointment)
-            .HasForeignKey<Mark>(x => x.AppointmentId);
+            .HasForeignKey<Mark>(x => x.AppointmentId)
+            .OnDelete(DeleteBehavior.Cascade);
         
         builder
             .Property(x => x.Date)

@@ -33,12 +33,12 @@ public class Examination : BaseEntity
     /// <summary>
     /// Идентификатор врача
     /// </summary>
-    public Guid UserId { get; set; }
+    public Guid? UserId { get; set; }
     
     /// <summary>
     /// Врач
     /// </summary>
-    public virtual User User { get; set; }
+    public virtual User? User { get; set; }
     
     /// <summary>
     /// Назначения

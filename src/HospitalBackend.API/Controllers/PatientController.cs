@@ -44,7 +44,7 @@ public class PatientController(IPatientService service) : BaseController
     [ProducesResponseType(typeof(ICollection<PatientDto>), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]
-    public async Task<IActionResult> GetPatientsByFioAsync(string fio, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetPatientsByFioAsync(string? fio, CancellationToken cancellationToken)
     {
         var patients = await service.GetPatientsByFioAsync(fio, cancellationToken);
         return Ok(patients);

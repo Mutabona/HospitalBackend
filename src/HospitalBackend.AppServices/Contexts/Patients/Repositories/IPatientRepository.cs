@@ -13,7 +13,7 @@ public interface IPatientRepository
     /// <param name="fio">ФИО.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Коллекция моделей пациентов.</returns>
-    Task<ICollection<PatientDto>> GetPatientsByFioAsync(string fio, CancellationToken cancellationToken);
+    Task<ICollection<PatientDto>> GetPatientsByFioAsync(string? fio, CancellationToken cancellationToken);
     
     /// <summary>
     /// Получает пациента по идентификатору.

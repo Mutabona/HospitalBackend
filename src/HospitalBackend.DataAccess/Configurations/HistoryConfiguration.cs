@@ -35,11 +35,13 @@ public class HistoryConfiguration : IEntityTypeConfiguration<History>
         builder
             .HasMany(x => x.Analyzes)
             .WithOne(x => x.History)
-            .HasForeignKey(x => x.HistoryId);
+            .HasForeignKey(x => x.HistoryId)
+            .OnDelete(DeleteBehavior.Cascade);
         
         builder
             .HasMany(x => x.Examinations)
             .WithOne(x => x.History)
-            .HasForeignKey(x => x.HistoryId);
+            .HasForeignKey(x => x.HistoryId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
