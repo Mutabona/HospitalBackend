@@ -27,9 +27,8 @@ public class AnalysisConfiguration : IEntityTypeConfiguration<Analysis>
         builder
             .Property(x => x.HistoryId)
             .IsRequired();
-        
+
         builder
-            .Property(x => x.AppointmentId)
-            .IsRequired();
+            .Property(x => x.AppointmentId);
     }
 }
