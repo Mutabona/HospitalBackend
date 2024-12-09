@@ -49,6 +49,7 @@ public class AppointmentRepository(IRepository<Appointment> repository, IMapper 
             .Include(x => x.Examination.History.Patient)
             .Include(x => x.Mark)
             .Include(x => x.Mark.User)
+            .OrderBy(x => x.Date)
             .Where(x => x.Examination.HistoryId == historyId)
             .ProjectTo<AppointmentDto>(mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
@@ -81,6 +82,7 @@ public class AppointmentRepository(IRepository<Appointment> repository, IMapper 
             .Include(x => x.Examination.History.Patient)
             .Include(x => x.Mark)
             .Include(x => x.Mark.User)
+            .OrderBy(x => x.Date)
             .Where(x => x.ExaminationId == examinationId)
             .ProjectTo<AppointmentDto>(mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
